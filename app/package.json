@@ -1,0 +1,20 @@
+{
+  "name": "node-app",
+  "version": "1.0.0",
+  "description": "Node.js application for AWS 3-Tier Architecture (App Tier).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Osama Faisal",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.9.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

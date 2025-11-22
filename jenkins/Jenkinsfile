@@ -1,0 +1,56 @@
+pipeline {
+  agent any
+
+  environment {
+    DOCKERHUB_CRED = credentials('dockerhub-cred-id')    // id in Jenkins
+    AWS_CRED = credentials('aws-creds-id')               // AWS access key id & secret
+    IMAGE = "dockerhub_username/node-app"
+    TAG = "${env.GIT_COMMIT.take(7)}"
+    TF_VAR_image_tag = "${env.GIT_COMMIT.take(7)}"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps { checkout scm }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        sh "docker build -t ${IMAGE}:${TAG} ./app"
+      }
+    }
+
+    stage('Login DockerHub') {
+      steps {
+        sh "echo ${DOCKERHUB_CRED_PSW} | docker login -u ${DOCKERHUB_CRED_USR} --password-stdin"
+      }
+    }
+
+    stage('Push Image') {
+      steps {
+        sh "docker push ${IMAGE}:${TAG}"
+      }
+    }
+
+    stage('Terraform Init & Apply') {
+      environment {
+        AWS_ACCESS_KEY_ID = "${AWS_CRED_USR}"
+        AWS_SECRET_ACCESS_KEY = "${AWS_CRED_PSW}"
+      }
+      steps {
+        dir('infra') {
+          sh "terraform init -input=false"
+          sh "terraform workspace select prod || terraform workspace new prod"
+          sh "terraform apply -auto-approve -var 'image_tag=${TAG}'"
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      echo "Cleaning up local images"
+      sh "docker rmi ${IMAGE}:${TAG} || true"
+    }
+  }
+}
