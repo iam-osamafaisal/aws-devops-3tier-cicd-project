@@ -28,35 +28,6 @@ GitHub → Jenkins → DockerHub → Terraform → AWS (ECS + ALB + RDS)
 • Network: VPC, Public & Private Subnets, Route Tables, NAT
 • Security: IAM Roles, SGs, Secrets (DB creds), ALB → ECS → RDS flow
 
-🧩 Repository Structure
-
-aws-devops-3tier-cicd-project/
-│── infra/
-│   ├── provider.tf
-│   ├── variables.tf
-│   ├── vpc.tf
-│   ├── ecs_alb.tf
-│   ├── rds.tf
-│   ├── security_groups.tf
-│   ├── outputs.tf
-│   ├── backend.tf (optional)
-│
-│── app/
-│   ├── server.js
-│   ├── package.json
-│   └── Dockerfile
-│
-│── nginx/
-│   ├── default.conf
-│   └── Dockerfile
-│
-│── jenkins/
-│   └── Jenkinsfile
-│
-│── docker-compose.yaml
-│── README.md
-│── architecture.png (add here)
-
 ⚙️ End-to-End CI/CD Pipeline Flow
 
 1️⃣ Developer pushes code to GitHub
