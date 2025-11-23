@@ -1,5 +1,4 @@
 📌 3-Tier Web Application Deployment on AWS with Full CI/CD Pipeline (Terraform + Docker + •Jenkins + ECS + RDS)
-
 This project demonstrates a complete End-to-End DevOps Pipeline to deploy a Dockerized 3-Tier Web Application using:
 
 • AWS ECS Fargate (Compute)
@@ -117,4 +116,4 @@ Osama Faisal
 📍 Bangalore, India
 💼 Aspiring Cloud & DevOps Engineer
 🔗 GitHub: https://github.com/iam-osamafaisal
-🔗 LinkedIn: 
+🔗 LinkedIn: https://www.linkedin.com/posts/iam-osamafaisal_aws-devops-terraform-activity-7398239579146883073-wjYL?utm_source=share&utm_medium=member_desktop&rcm=ACoAACPTxGoB2r6kmmhk0hVfm0-T_Be7Q8uFaiM
